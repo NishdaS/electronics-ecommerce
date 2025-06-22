@@ -1,0 +1,50 @@
+[
+    {
+        "product_id": "P001",
+        "name": "Bluetooth Headphones",
+        "price": 129.99,
+        "stock": 20,
+        "category": "Audio",
+        "description": "Experience premium sound quality with these Bluetooth Headphones, designed for immersive audio whether you're commuting, working out, or relaxing. Featuring advanced active noise cancellation technology, they block out ambient noise so you can focus on your music or calls. Equipped with 40mm dynamic drivers, they deliver deep bass, clear mids, and crisp highs for a balanced sound profile. The headphones have a comfortable over-ear design with plush memory foam ear cups and adjustable headband, ensuring hours of fatigue-free listening. With Bluetooth 5.2, expect a stable connection and up to 20 meters wireless range. The built-in microphone supports hands-free calls with clear voice pickup, and the integrated controls let you manage playback, volume, and calls easily. Battery life lasts up to 20 hours on a single charge, with quick charge functionality providing 2 hours of playback after just 15 minutes charging. Compatible with all Bluetooth-enabled devices, these headphones also support aptX and AAC codecs for high-quality audio streaming."
+    },
+    {
+        "product_id": "P002",
+        "name": "4K Smart TV 55\"",
+        "price": 599.0,
+        "stock": 7,
+        "category": "Entertainment",
+        "description": "Upgrade your viewing experience with this 55-inch 4K Ultra HD Smart TV. Featuring HDR10+ support and a dynamic contrast ratio, it delivers vivid colors and deep blacks for stunning visuals. The built-in smart platform supports popular streaming apps like Netflix, YouTube, Disney+, and more, with seamless voice control integration via Google Assistant and Alexa. The TV includes three HDMI ports, two USB ports, and Bluetooth 5.0 for connecting soundbars, game consoles, and more. A sleek bezel-less design ensures maximum screen space with a modern aesthetic. Enjoy smooth motion with a 120Hz refresh rate and Dolby Atmos support for cinematic sound. Wall-mountable and energy efficient."
+    },
+    {
+        "product_id": "P003",
+        "name": "Wireless Mechanical Keyboard (RGB Backlit)",
+        "price": 89.5,
+        "stock": 34,
+        "category": "Accessories",
+        "description": "Take your music anywhere with this compact Portable Bluetooth Speaker. It delivers rich, clear sound with deep bass thanks to its dual-driver setup and passive radiators. The IPX7 waterproof rating makes it perfect for pool parties, beach trips, or outdoor adventures. Featuring Bluetooth 5.0 for stable wireless connection up to 30 feet, it supports hands-free calls via built-in microphone. The speaker boasts a battery life of up to 12 hours on a full charge and charges quickly via USB-C. Easy-to-use buttons let you control volume, play/pause, and skip tracks. Compatible with all Bluetooth-enabled devices and includes a built-in strap for easy carrying."
+    },
+    {
+        "product_id": "P004",
+        "name": " Portable Bluetooth Speaker",
+        "price": 79.99,
+        "stock": 45,
+        "category": "Audio",
+        "description": "Take your music anywhere with this compact Portable Bluetooth Speaker. It delivers rich, clear sound with deep bass thanks to its dual-driver setup and passive radiators. The IPX7 waterproof rating makes it perfect for pool parties, beach trips, or outdoor adventures. Featuring Bluetooth 5.0 for stable wireless connection up to 30 feet, it supports hands-free calls via built-in microphone. The speaker boasts a battery life of up to 12 hours on a full charge and charges quickly via USB-C. Easy-to-use buttons let you control volume, play/pause, and skip tracks. Compatible with all Bluetooth-enabled devices and includes a built-in strap for easy carrying.\r\n\r\n5. Smart Fitness Watch"
+    },
+    {
+        "product_id": "P005",
+        "name": "Smart Fitness Watch",
+        "price": 149.95,
+        "stock": 26,
+        "category": "Accessories",
+        "description": "Stay on top of your health and fitness with this Smart Fitness Watch. It features a bright, full-color touchscreen with customizable watch faces and a sleek, lightweight design. Track your heart rate, steps, calories burned, sleep quality, and more with advanced sensors. The watch supports multiple sport modes including running, cycling, swimming, and yoga, with water resistance up to 50 meters. Receive notifications for calls, messages, and apps directly on your wrist. The battery lasts up to 7 days on a single charge, with magnetic charging for convenience. Compatible with both iOS and Android devices via a dedicated app."
+    },
+    {
+        "product_id": "P006",
+        "name": "USB-C Fast Charging Power Bank (20,000mAh)",
+        "price": 39.9,
+        "stock": 60,
+        "category": "Accessories",
+        "description": "Keep your devices powered on the go with this high-capacity USB-C Fast Charging Power Bank. With 20,000mAh capacity, it can fully charge smartphones multiple times, tablets, and even some laptops. Supports Power Delivery (PD) 3.0 and Quick Charge 3.0 for ultra-fast charging speeds. It features dual USB-A ports and one USB-C port for simultaneous charging of three devices. The power bank has a sleek, compact design with LED indicators to show remaining battery life. Built-in safety features protect against overcharging, overheating, and short circuits. Compatible with a wide range of devices, including iPhones, Android phones, tablets, and USB-C laptops."
+    }
+]

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Meta Tags for Responsive Design and Character Set -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Page Title -->
+  <title>Financial Report</title>
+
+  <!-- Bootstrap CSS for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Link to custom global CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}" />
+</head>
+<body>
+  
+  <div class="financial-report container mt-5 pt-4">
+    
+    <!-- Page Heading -->
+    <h2 class="text-center text-primary mb-4">💰 FINANCIAL REPORT</h2>
+
+    <!-- Summary Card: Displays total revenue and orders -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <p><strong>Total Revenue:</strong> ${{ "%.2f"|format(report.total_revenue) }}</p>
+      <p><strong>Total Orders:</strong> {{ report.total_orders }}</p>
+    </div>
+
+    <!-- Sales by Date Card -->
+    <div class="card p-4 shadow-sm">
+      <h5>📈 Sales by Date</h5>
+
+      <!-- Loop through sales_by_date dictionary and display each entry -->
+      <ul class="list-group">
+        {% for date, amount in report.sales_by_date.items() %}
+          <li class="list-group-item d-flex justify-content-between">
+            <span>{{ date }}</span>
+            <span>${{ "%.2f"|format(amount) }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Back to Admin Button -->
+    <div class="mt-4 text-center">
+      <a href="/admin" class="btn btn-primary btn-small rounded-pill px-4">⬅ Back to Admin</a>
+    </div>
+  </div>
+</body>
+</html>

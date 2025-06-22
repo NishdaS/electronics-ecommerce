@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Page Title -->
+  <title>Your Cart</title>
+  
+  <!-- Bootstrap CSS for styling the page with pre-built responsive styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons CSS for using icons such as cart and trash -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom global CSS file for any additional styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}">
+</head>
+
+<body class="bg-light"> <!-- Light background for the whole page -->
+
+<div class="container py-5"> <!-- Bootstrap container with vertical padding -->
+  <div class="card shadow-lg p-4 cart"> <!-- Card component with shadow and padding, also given 'cart' class for custom styling -->
+    
+    <!-- Page heading with a cart icon and blue text -->
+    <h2 class="text-center text-primary mb-4">
+      <i class="bi bi-cart-fill me-2"></i>Your Shopping Cart
+    </h2>
+
+    <!-- Conditional rendering: Check if the cart contains any items -->
+    {% if cart %}
+      
+      <!-- List group for displaying cart items -->
+      <ul class="list-group mb-4">
+        <!-- Loop over each item in the cart -->
+        {% for item in cart %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            
+            <!-- Item details: name and price calculation -->
+            <div>
+              <h5 class="mb-1">{{ item.name }}</h5>
+              <small>
+                {{ item.quantity }} × ${{ "%.2f"|format(item.price) }} = 
+                <strong>${{ "%.2f"|format(item.quantity * item.price) }}</strong>
+              </small>
+            </div>
+            
+            <!-- Form for removing the item from the cart -->
+            <form action="{{ url_for('remove_from_cart', product_id=item.product_id) }}" method="post">
+              <button 
+                class="btn btn-sm rounded-pill btn-outline-danger" 
+                type="submit" 
+                title="Remove"
+              >
+                <!-- Trash icon button -->
+                <i class="bi bi-trash3"></i>
+              </button>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Total price display aligned to the right -->
+      <div class="text-end mb-4 total-price">
+        Total: <span class="text-success">${{ "%.2f"|format(total) }}</span>
+      </div>
+
+      <!-- Buttons for checkout and navigating back to products -->
+      <div class="cart-buttons d-flex justify-content-center gap-3 mt-4">
+        
+        <!-- Checkout button within a form (GET method) -->
+        <form action="/checkout" method="get">
+          <button class="btn btn-sm rounded-pill btn-success px-4 py-2" type="submit">
+            Proceed to Checkout
+          </button>
+        </form>
+
+        <!-- Link styled as a button to go back to the products page -->
+        <a href="/products" class="btn btn-sm rounded-pill btn-outline-secondary px-4 py-2 d-flex align-items-center">
+          <i class="bi bi-arrow-left-circle me-2"></i> Back to Products
+        </a>
+      </div>
+      
+    {% else %}
+      <!-- If the cart is empty, display a message -->
+      <p class="text-center text-muted fs-5">Your cart is empty.</p>
+      
+      <!-- Button to return to products page, centered -->
+      <div class="text-center mt-4">
+        <a 
+          href="/products" 
+          class="btn btn-sm rounded-pill btn-outline-secondary px-4 py-2 d-flex align-items-center justify-content-center mx-auto" 
+          style="max-width: 220px;"
+        >
+          <i class="bi bi-arrow-left-circle me-2"></i> Back to Products
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+</body>
+</html>

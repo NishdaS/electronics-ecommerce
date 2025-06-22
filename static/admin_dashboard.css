@@ -1,0 +1,299 @@
+/* === admin_dashboard.css - scoped styles for Admin Dashboard only === */
+
+/* Container padding and max width */
+.admin-dashboard-container {
+  max-width: 1140px;
+}
+
+/* Header styling */
+.admin-dashboard-header h2 {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.admin-logout-btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-logout-btn:hover {
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0 0 8px rgba(220, 53, 69, 0.6);
+}
+
+/* Add Product Form */
+.admin-product-form .card-header {
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.admin-product-form form input,
+.admin-product-form form textarea {
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-product-form form input:focus,
+.admin-product-form form textarea:focus {
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
+  border-color: #0d6efd;
+}
+
+/* Add Product Button */
+.admin-add-product-btn {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  transition: box-shadow 0.3s ease;
+}
+
+.admin-add-product-btn:hover {
+  box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
+}
+
+/* Product List Cards */
+.admin-product-list .admin-product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-product-list .admin-product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.admin-product-footer {
+  border-top-color: #dee2e6;
+}
+
+/* Stats Section */
+.admin-stats-section .card-header {
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.admin-timeframe-select {
+  max-width: 180px;
+  font-weight: 600;
+}
+
+/* Stats Boxes */
+#stats > div {
+  transition: box-shadow 0.3s ease;
+  cursor: default;
+}
+
+#stats > div:hover {
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.3);
+}
+
+/* Reports Section */
+.admin-reports-section h3 {
+  letter-spacing: 0.07em;
+  font-weight: 700;
+}
+
+.admin-report-btn {
+  transition: box-shadow 0.3s ease;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.admin-report-btn:hover {
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .admin-dashboard-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .admin-logout-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .admin-add-product-btn {
+    width: 100%;
+  }
+  .admin-report-btn {
+    width: 100%;
+  }
+}
+
+/* ===== STATISTICS SECTION === */
+.card-body canvas#salesChart {
+  max-width: 100%;
+  height: 350px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .card-body canvas#salesChart {
+    height: 250px;
+  }
+}
+
+/* Style the stats message when no data or loading */
+#statsMessage {
+  font-style: italic;
+  color: #6c757d; /* Bootstrap muted */
+  margin-top: 1rem;
+}
+
+/* === FINANCIAL REPORT ==== */
+
+/* Styling for the main heading inside financial report */
+.financial-report h2 {
+  font-weight: 700; /* Bold */
+  letter-spacing: 1px; /* Slight spacing between letters */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  color: #0d6efd; /* Bootstrap primary blue */
+}
+
+/* Summary card styling showing total revenue and orders */
+.financial-report .summary-card {
+  background: linear-gradient(135deg, #4caf50, #81c784); /* Green gradient for positive feel */
+  color: white; /* White text for contrast */
+  border: none; /* No border */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Soft shadow for depth */
+  transition: transform 0.3s ease; /* Smooth transform for hover effect */
+  text-align: center; /* Center text */
+  padding: 1.5rem; /* Comfortable padding */
+  margin-bottom: 3rem; /* Space below */
+}
+
+/* Hover effect to raise the summary card slightly and intensify shadow */
+.financial-report .summary-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Paragraph styling inside summary card */
+.financial-report .summary-card p {
+  font-size: 1.25rem; /* Slightly larger text */
+  margin: 0.5rem 0; /* Vertical spacing */
+  font-weight: 600; /* Semi-bold for emphasis */
+}
+
+/* Sales card styling containing sales by date list */
+.financial-report .sales-card {
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); /* Medium shadow */
+  background-color: white; /* White background */
+  padding: 1.5rem; /* Padding inside card */
+  margin-bottom: 1.5rem; /* Margin below card */
+}
+
+/* Heading inside sales card */
+.financial-report .sales-card h5 {
+  font-weight: 600; /* Semi-bold */
+  color: #0d6efd; /* Bootstrap primary color */
+  margin-bottom: 1rem; /* Space below heading */
+}
+
+/* List group items styling for the sales entries */
+.financial-report .list-group-item {
+  border: none; /* Remove default border */
+  border-bottom: 1px solid #dee2e6; /* Light bottom border for separation */
+  font-weight: 500; /* Medium weight */
+  font-size: 1rem; /* Normal size text */
+  display: flex; /* Flexbox for space between date and amount */
+  justify-content: space-between; /* Push date and amount to edges */
+}
+
+/* Remove border bottom on the last list item */
+.financial-report .list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* Utility class to make text bold where needed */
+.financial-report .text-success {
+  font-weight: 700;
+}
+
+/* Primary button styling */
+.financial-report .btn-primary {
+  background: #0d6efd; /* Bootstrap primary blue */
+  border: none; /* No border */
+  padding: 0.6rem 2rem; /* Vertical and horizontal padding */
+  font-weight: 600; /* Semi-bold text */
+  box-shadow: 0 4px 10px rgb(13 110 253 / 0.4); /* Blue glow shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition on hover */
+  border-radius: 50rem; /* Fully rounded pill shape */
+}
+
+/* Button hover effect to darken color and increase shadow */
+.financial-report .btn-primary:hover {
+  background-color: #0b5ed7;
+  box-shadow: 0 6px 14px rgb(11 94 215 / 0.6);
+}
+
+/* === STOCK REPORT === */
+
+.stock-report {
+  background: #f8f9fa; /* Light gray background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 900px;
+  margin: 0 auto; /* Center horizontally */
+}
+
+/* Heading styles */
+.stock-report h2 {
+  letter-spacing: 0.1em;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Table container styling */
+.stock-report table {
+  background: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+/* Sticky table header for better UX */
+.stock-report thead th {
+  position: sticky;
+  top: 0;
+  background-color: #343a40 !important;
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+/* Row hover effect for highlighting */
+.stock-report tbody tr:hover {
+  background-color: #e9f7ef;
+  transition: background-color 0.3s ease;
+  cursor: default;
+}
+
+/* Badge styling for stock status */
+.stock-report .badge {
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 85px;
+  text-align: center;
+  border-radius: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Primary button styling with gradient and shadow */
+.stock-report .btn-primary {
+  background: linear-gradient(45deg, #198754, #1e7e34);
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 1.8rem;
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+  transition: background 0.3s ease;
+}
+
+/* Hover effect for the primary button */
+.stock-report .btn-primary:hover {
+  background: linear-gradient(45deg, #157347, #145c23);
+  box-shadow: 0 6px 15px rgba(20, 92, 35, 0.5);
+}

@@ -1,0 +1,429 @@
+/* ========== PRODUCT LIST ========== */
+.product-list .product-card {
+  transition: transform 0.2s ease-in-out;
+  border-radius: 12px;
+  background-color: #fefefe;
+  position: relative; /* needed for absolute child */
+}
+
+.product-list .product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.product-list .product-card .product-preview {
+  display: none;
+}
+
+.product-list .product-card:hover .product-preview {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background: white;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== CART BUTTONS ========== */
+.cart-buttons .btn-sm-pill {
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cart-buttons .btn-sm-pill.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+}
+
+.cart-buttons .btn-sm-pill.btn-success:hover {
+  background-color: #218838;
+  color: white;
+}
+
+.cart-buttons .btn-sm-pill.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.cart-buttons .btn-sm-pill.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cart-buttons .btn-sm-pill.btn-outline-primary {
+  border-color: #0d6efd;
+  color: #0d6efd;
+}
+
+.cart-buttons .btn-sm-pill.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+/* Total price styling in cart */
+.cart .total-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Card styling in cart */
+.cart .card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* List group items in cart */
+.cart .list-group-item {
+  padding: 1rem 1.5rem;
+}
+
+/* Form buttons alignment in cart */
+.cart form {
+  margin: 0;
+}
+
+/* ========== CHECKOUT ========== */
+.checkout-container {
+  max-width: 600px;
+  margin: 4rem auto 3rem; /* top, horizontal auto, bottom */
+  background-color: #f8f9fa;
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.checkout-container h2 {
+  color: #0d6efd;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.checkout-container h5 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.checkout-container .list-group-item {
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  padding: 0.75rem 1rem;
+}
+
+.checkout-container .list-group-item span {
+  font-weight: 700;
+  color: #198754;
+}
+
+.checkout-container p strong {
+  font-size: 1.2rem;
+  color: #212529;
+}
+
+.checkout-container button.btn-success {
+  border-radius: 50px;
+  box-shadow: 0 3px 6px rgb(25 135 84 / 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.checkout-container button.btn-success:hover {
+  background-color: #157347;
+}
+
+.checkout-container a.btn-secondary {
+  display: block;
+  padding: 0.55rem;
+  border-radius: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.checkout-container label.form-label strong {
+  color: #212529;
+  font-weight: 600;
+}
+
+.checkout-container input[readonly],
+.checkout-container textarea {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ced4da;
+  resize: vertical;
+}
+
+.checkout-container textarea:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgb(13 110 253 / 0.25);
+  outline: none;
+  background-color: white;
+}
+
+.checkout-container .button-group {
+  display: flex;
+  justify-content: center;  /* centers buttons horizontally */
+  gap: 1rem;                /* space between buttons */
+  margin-top: 1rem;         /* optional spacing above buttons */
+}
+
+.checkout-container .button-group button,
+.checkout-container .button-group a {
+  width: 150px;             /* make buttons equal width */
+  font-size: 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+/* ========== ORDER RECEIPT ========== */
+.order-container {
+  max-width: 720px;
+  margin-top: 3rem;
+  background-color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 4rem auto 3rem; /* top, horizontal auto, bottom */
+}
+
+.order-container .receipt-header {
+  color: #198754;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.order-container .subheader {
+  font-size: 1.1rem;
+  color: #6c757d;
+}
+
+.order-container .table {
+  margin-top: 1.5rem;
+}
+
+.order-container th {
+  background-color: #e9ecef;
+  font-weight: 600;
+}
+
+.order-container td,
+.order-container th {
+  vertical-align: middle;
+}
+
+.order-container .total-cell {
+  text-align: right;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background-color: #f1f3f5;
+}
+
+.order-container .status-badge {
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  text-transform: capitalize;
+}
+
+.order-container .btn-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 50px;
+  background-color: #7d8da5;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.order-container .btn-back:hover {
+  background-color: #084298;
+  color: #fff;
+  text-decoration: none;
+}
+
+.order-container .btn-back i {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+/* ========== GLOBAL BODY ========== */
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Scoped styles for Your Orders page */
+.orders-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* ========== ORDER LISTS ==========*/ 
+
+/* Order list container */
+.orders-page .list-group-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.orders-page .list-group-item:hover {
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.1);
+}
+
+/* Order ID and status badge container */
+.orders-page .list-group-item > div.d-flex {
+  gap: 1rem;
+}
+
+/* Status badge */
+.orders-page .badge {
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.35em 0.75em;
+  border-radius: 0.75rem;
+  text-transform: capitalize;
+}
+
+/* Items list inside each order */
+.orders-page .list-group-item ul.list-group-flush li.list-group-item {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Price on the right for each item */
+.orders-page .list-group-item ul.list-group-flush li.list-group-item span:last-child {
+  font-weight: 600;
+  color: #198754; /* Bootstrap green */
+}
+
+/* Cancel button style */
+.orders-page .btn-outline-danger {
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 0.35rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.orders-page .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Order canceled text */
+.orders-page em.text-danger {
+  font-size: 0.95rem;
+  font-style: normal;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 700;
+}
+
+/* Page title */
+.orders-page h2.text-primary {
+  font-weight: 700;
+  font-size: 2.2rem;
+}
+
+/* Navigation buttons container */
+.orders-page .text-center.mt-4 a.btn {
+  border-radius: 30px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.orders-page .text-center.mt-4 a.btn-primary:hover {
+  background-color: #004085;
+  border-color: #004085;
+}
+
+.orders-page .text-center.mt-4 a.btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* === PRODUCT DETAIL === */
+.product-description {
+  white-space: pre-wrap;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.back-link {
+  margin-top: 20px;
+  display: inline-block;
+}
+  
+/* === REGISTER PAGE === */
+
+.register-container {
+  max-width: 480px; /* wider card */
+  width: 100%;
+  font-size: 0.8rem; /* slightly smaller font */
+  border-radius: 0.5rem;
+}
+
+.register-container.card {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.register-container .card-body > h2 {
+  font-size: 1.6rem;
+}
+
+.register-container .mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+/* === LOGIN PAGE === */
+body {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: #f8f9fa; /* light gray background */
+}
+
+.login-container {
+  max-width: 480px; /* wider container */
+  width: 100%;
+  font-size: 0.9rem; /* slightly smaller font */
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 2rem;
+}
+
+.login-container h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-container .mb-3 {
+  margin-bottom: 1rem !important;
+}

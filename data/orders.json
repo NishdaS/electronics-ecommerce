@@ -1,0 +1,23 @@
+[
+    {
+        "order_id": "19a29a6f-46d9-40af-b83f-8e4229d539a6",
+        "username": "mary",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "Bluetooth Headphones",
+                "quantity": 1,
+                "price": 129.99
+            },
+            {
+                "product_id": "P002",
+                "name": "4K Smart TV 55\"",
+                "quantity": 1,
+                "price": 599.0
+            }
+        ],
+        "date": "2025-06-06 14:42:58",
+        "status": "active",
+        "total": 728.99
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "username": "john",
+        "email": "john@gmail.com",
+        "password": "scrypt:32768:8:1$YVnt3otyN7Et3Iv2$904b03e59371d5e25c5b05b24d641ab4c460d0b61a7c7c29f71177e9a5bf303e77dcea9d9d7dc5fd0053d1ad6f2000e70c598ceb1e29b631e86f841c772b53b0",
+        "role": "customer",
+        "phone_number": "0493278612",
+        "address": "None"
+    },
+    {
+        "username": "mary",
+        "email": "mary@gmail.com",
+        "password": "scrypt:32768:8:1$gXWJ9XyECc4kUFWH$46fd660ddc9a4b565cdcf0d72ace37e85b1179aba462e9df3dfb0c475997993790575d8fd7a024011de6e34f4bb2c7bc33555695cf1ca5ea0ac1ebfd30ea3c8b",
+        "role": "admin",
+        "phone_number": "0450379246",
+        "address": null
+    }
+]

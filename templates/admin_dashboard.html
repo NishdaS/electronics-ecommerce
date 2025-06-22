@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Dashboard - Product Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+ 
+  <!-- Stat Chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Additional Admin Dashboard CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}" />
+</head>
+<body>
+
+<div class="container py-5 admin-dashboard-container">
+  <!-- Header -->
+  <header class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3 admin-dashboard-header">
+    <h2 class="text-primary d-flex align-items-center gap-2">
+      <i class="bi bi-speedometer2 fs-2"></i> Admin Dashboard
+    </h2>
+    <a href="/logout" class="btn btn-outline-danger d-flex align-items-center gap-1 shadow-sm admin-logout-btn">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </a>
+  </header>
+
+  <!-- Product Form -->
+  <section class="card mb-5 shadow-sm rounded-4 admin-product-form">
+    <div class="card-header bg-primary text-white fw-bold fs-5 rounded-top-4">Add New Product</div>
+    <div class="card-body">
+      <form method="post" action="/add-product" class="row g-4 needs-validation" novalidate>
+        <div class="col-sm-6 col-md-3">
+          <label for="name" class="form-label fw-semibold">Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" name="name" required placeholder="Product name" />
+          <div class="invalid-feedback">Please enter the product name.</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <label for="price" class="form-label fw-semibold">Price ($) <span class="text-danger">*</span></label>
+          <input type="number" class="form-control" id="price" name="price" step="0.01" min="0" required placeholder="e.g. 19.99" />
+          <div class="invalid-feedback">Please enter a valid price.</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <label for="stock" class="form-label fw-semibold">Stock <span class="text-danger">*</span></label>
+          <input type="number" class="form-control" id="stock" name="stock" required min="0" placeholder="Quantity in stock" />
+          <div class="invalid-feedback">Please enter stock quantity.</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <label for="category" class="form-label fw-semibold">Category</label>
+          <input type="text" class="form-control" id="category" name="category" placeholder="e.g. Electronics" />
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label fw-semibold">Description</label>
+          <textarea class="form-control" id="description" name="description" rows="3" placeholder="Product description (optional)"></textarea>
+        </div>
+        <div class="col-12 text-end">
+          <button type="submit" class="btn btn-success px-5 fw-semibold shadow-sm admin-add-product-btn">
+            <i class="bi bi-plus-circle me-1"></i> Add Product
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Product List -->
+  <section class="card mb-5 shadow-sm rounded-4 admin-product-list">
+    <div class="card-header bg-secondary text-white fw-bold fs-5 rounded-top-4">All Products</div>
+    <div class="card-body row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      {% for product in products %}
+        <article class="col">
+          <div class="card h-100 border-0 shadow-sm rounded-4 admin-product-card">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title text-primary fw-bold">{{ product.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                ID: {{ product.product_id }} | Category: {{ product.category or 'N/A' }}
+              </h6>
+              <p class="card-text text-justify text-truncate" style="--bs-lines:3; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient: vertical; overflow: hidden;">
+                {{ product.description or 'No description provided.' }}
+              </p>
+              <div class="mt-auto d-flex justify-content-between align-items-center pt-3 border-top admin-product-footer">
+                <div>
+                  <span class="text-success fs-5 fw-bold">${{ product.price }}</span><br />
+                  <span class="badge bg-info text-dark fs-6">{{ product.stock }} in stock</span>
+                </div>
+                <div class="d-flex gap-2">
+                  <a href="{{ url_for('edit_product', product_id=product.product_id) }}" class="btn btn-sm btn-outline-primary" title="Edit Product">
+                    <i class="bi bi-pencil-fill"></i>
+                  </a>
+                  <form method="post" action="/delete-product/{{ product.product_id }}" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Product">
+                      <i class="bi bi-trash-fill"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      {% else %}
+        <p class="text-muted text-center my-4 fs-5">No products available.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Statistic section -->
+  <section class="card mb-5 shadow-lg rounded-4 admin-sales-stats" style="background: linear-gradient(135deg, #e9f7ef, #ffffff);">
+  <!-- Card header -->
+  <div class="card-header bg-success text-white fw-bold fs-5 rounded-top-4 d-flex align-items-center gap-2" role="heading" aria-level="2">
+    <i class="bi bi-bar-chart-line-fill fs-4" aria-hidden="true"></i> Sales Overview
+  </div>
+
+  <div class="card-body">
+
+    <!-- Sales Stats: Responsive grid -->
+    <div class="row row-cols-2 row-cols-md-4 g-4 mb-5 text-center" role="list" aria-label="Sales statistics summary">
+      <!-- Stat cards -->
+      <div class="col" role="listitem">
+        <div class="p-4 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center">
+          <h6 class="text-secondary mb-2">Today</h6>
+          <p class="fs-3 fw-bold text-success mb-0" id="stat-today" aria-live="polite" aria-atomic="true">$0</p>
+        </div>
+      </div>
+
+      <div class="col" role="listitem">
+        <div class="p-4 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center">
+          <h6 class="text-secondary mb-2">This Week</h6>
+          <p class="fs-3 fw-bold text-success mb-0" id="stat-week" aria-live="polite" aria-atomic="true">$0</p>
+        </div>
+      </div>
+
+      <div class="col" role="listitem">
+        <div class="p-4 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center">
+          <h6 class="text-secondary mb-2">This Month</h6>
+          <p class="fs-3 fw-bold text-success mb-0" id="stat-month" aria-live="polite" aria-atomic="true">$0</p>
+        </div>
+      </div>
+
+      <div class="col" role="listitem">
+        <div class="p-4 rounded-4 shadow-sm bg-white h-100 d-flex flex-column justify-content-center">
+          <h6 class="text-secondary mb-2">This Year</h6>
+          <p class="fs-3 fw-bold text-success mb-0" id="stat-year" aria-live="polite" aria-atomic="true">$0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Line Chart Container -->
+    <div class="mb-5 position-relative" role="region" aria-label="Sales trends over time" style="min-height: 150px;">
+      <canvas id="salesChart" height="120" aria-describedby="salesChartDesc" class="shadow-sm rounded-4" style="background: #fff;"></canvas>
+      <div id="salesChartDesc" class="visually-hidden">
+        Line chart showing sales performance over time.
+      </div>
+    </div>
+
+    <!-- Top Sold Products List -->
+    <div>
+      <h6 class="fw-semibold mb-3 d-flex align-items-center gap-2">
+        <i class="bi bi-box-seam fs-5" aria-hidden="true"></i> Top Sold Products
+      </h6>
+      <ul class="list-group shadow-sm rounded-4 overflow-hidden" id="top-products-list" role="list" aria-label="Top sold products">
+        <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+          <span class="text-muted fst-italic">No sales data</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Reports Links -->
+  <section class="text-center mt-5 admin-reports-section">
+    <h3 class="mb-4 fw-bold text-secondary">Reports</h3>
+    <div class="d-flex justify-content-center flex-wrap gap-4">
+      <a href="{{ url_for('financial_report') }}" class="btn btn-outline-primary btn-lg px-4 fw-semibold shadow-sm admin-report-btn">
+        <i class="bi bi-currency-dollar me-2"></i> Financial Report
+      </a>
+      <a href="{{ url_for('stock_report') }}" class="btn btn-outline-success btn-lg px-4 fw-semibold shadow-sm admin-report-btn">
+        <i class="bi bi-box-seam me-2"></i> Stock Report
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+ let orders = [];
+
+ // Fetch orders.json asynchronously
+ async function fetchOrders() {
+  try {
+    const response = await fetch('orders.json'); // Fetch the JSON file
+    orders = await response.json();               // Parse JSON to orders array
+    updateStatsAndChart();                         // Update UI stats and chart with new data
+  } catch (err) {
+    console.error("Failed to load orders.json", err);
+  }
+}
+
+ // Update both sales stats and sales chart on the page
+ function updateStatsAndChart() {
+  const salesByDate = calculateStats(); // Compute sales statistics grouped by date
+  renderChart(salesByDate);              // Render or update the sales chart with stats
+}
+
+ // Calculate various sales statistics and update the UI elements accordingly
+ function calculateStats() {
+  const now = new Date();
+  let dayTotal = 0, weekTotal = 0, monthTotal = 0, yearTotal = 0;
+  const dailySales = {};   // Track sales totals per day
+  const productSales = {}; // Track sales quantity and revenue per product
+
+  // Loop through each order to aggregate data
+  orders.forEach(order => {
+    const date = new Date(order.date);  // Convert order date string to Date object
+    const total = order.total;           // Total order amount
+    const dateStr = date.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+
+    // Accumulate daily sales
+    dailySales[dateStr] = (dailySales[dateStr] || 0) + total;
+
+    // Update totals for today, this week, this month, and this year
+    if (date.toDateString() === now.toDateString()) dayTotal += total;
+    if (isWithin(date, 7)) weekTotal += total;
+    if (date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear()) monthTotal += total;
+    if (date.getFullYear() === now.getFullYear()) yearTotal += total;
+
+    // Aggregate product-level sales: quantity and revenue
+    order.items.forEach(item => {
+      if (!productSales[item.name]) {
+        productSales[item.name] = { quantity: 0, revenue: 0 };
+      }
+      productSales[item.name].quantity += item.quantity;
+      productSales[item.name].revenue += item.quantity * item.price;
+    });
+  });
+
+  // Update the DOM elements to display sales stats
+  document.getElementById("stat-today").textContent = `$${dayTotal.toFixed(2)}`;
+  document.getElementById("stat-week").textContent = `$${weekTotal.toFixed(2)}`;
+  document.getElementById("stat-month").textContent = `$${monthTotal.toFixed(2)}`;
+  document.getElementById("stat-year").textContent = `$${yearTotal.toFixed(2)}`;
+
+  // Update the list of top-selling products on the page
+  updateTopProductsList(productSales);
+
+  // Return daily sales for chart rendering
+  return dailySales;
+}
+
+ // Update the top products list UI element with sorted sales data
+ function updateTopProductsList(productSales) {
+  const list = document.getElementById("top-products-list");
+  list.innerHTML = ''; // Clear previous list items
+
+  // Sort products by quantity sold in descending order
+  const sorted = Object.entries(productSales).sort((a, b) => b[1].quantity - a[1].quantity);
+
+  // If no sales, show placeholder message
+  if (sorted.length === 0) {
+    list.innerHTML = `<li class="list-group-item d-flex justify-content-between">
+      <span class="text-muted">No sales data</span>
+    </li>`;
+    return;
+  }
+
+  // Display up to top 5 products with quantity sold
+  sorted.slice(0, 5).forEach(([name, data]) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item d-flex justify-content-between";
+    li.textContent = `${name} (Qty: ${data.quantity})`;
+    list.appendChild(li);
+  });
+}
+
+ // Check if a given date is within the last N days (inclusive)
+ function isWithin(date, days) {
+  const now = new Date();
+  const past = new Date(now);
+  past.setDate(now.getDate() - days); // Calculate the date N days ago
+  return date >= past && date <= now;
+}
+
+ // Render or update the line chart showing sales by date using Chart.js
+ function renderChart(salesByDate) {
+  const ctx = document.getElementById("salesChart").getContext("2d");
+
+  const sortedDates = Object.keys(salesByDate).sort(); // Sort dates ascending
+  const dataPoints = sortedDates.map(date => salesByDate[date]); // Get sales values
+
+  // If chart already exists, update data; otherwise create new chart
+  if (window.salesChartInstance) {
+    window.salesChartInstance.data.labels = sortedDates;
+    window.salesChartInstance.data.datasets[0].data = dataPoints;
+    window.salesChartInstance.update();
+  } else {
+    window.salesChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: sortedDates,
+        datasets: [{
+          label: 'Sales by Date',
+          data: dataPoints,
+          fill: true,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.3,
+          backgroundColor: 'rgba(75, 192, 192, 0.2)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+}
+
+// Initial fetch to load orders and display stats/chart
+fetchOrders();
+
+// Set interval to refresh orders and update display every 10 seconds
+setInterval(fetchOrders, 10000);
+
+// Bootstrap form validation snippet: prevent submission if form is invalid
+(() => {
+  'use strict'
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();  // Stop form submission if invalid
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated'); // Add validation styling
+    }, false);
+  });
+})();
+</script>
