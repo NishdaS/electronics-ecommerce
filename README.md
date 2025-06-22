@@ -116,6 +116,8 @@ This project follows **Python's PEP 8** guidelines to ensure readable, maintaina
 
 ## Project Structure
 
+## Project Structure
+
 ├── app.py # Main Flask application entry point
 ├── models/
 │ ├── user.py # User class model
@@ -152,6 +154,7 @@ This project follows **Python's PEP 8** guidelines to ensure readable, maintaina
 │ ├── global.css # Common styles (Customer view)
 │ └── admin_dashboard.css # Admin dashboard specific styles
 └── README.md # Project documentation
+
 ---
 
 ## References
