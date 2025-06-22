@@ -116,44 +116,42 @@ This project follows **Python's PEP 8** guidelines to ensure readable, maintaina
 
 ## Project Structure
 
-Project Structure
-├── app.py                       # Main Flask application entry point
+├── app.py # Main Flask application entry point
 ├── models/
-│   ├── user.py                  # User class model
-│   └── product.py               # Product class model
+│ ├── user.py # User class model
+│ └── product.py # Product class model
 ├── services/
-│   ├── auth_service.py          # Login authentication logic
-│   ├── shopping_cart_service.py # Shopping cart logic
-│   ├── order_service.py         # Order processing logic
-│   ├── report_generator.py      # Financial and stock report generation
-│   ├── user_manager.py          # User CRUD functions
-│   └── product_manager.py       # Product CRUD functions
+│ ├── auth_service.py # Login authentication logic
+│ ├── shopping_cart_service.py # Shopping cart logic
+│ ├── order_service.py # Order processing logic
+│ ├── report_generator.py # Financial and stock report generation
+│ ├── user_manager.py # User CRUD functions
+│ └── product_manager.py # Product CRUD functions
 ├── utils/
-│   └── storage.py               # JSON file I/O utilities
+│ └── storage.py # JSON file I/O utilities
 ├── data/
-│   ├── users.json               # User data store
-│   ├── products.json            # Product data store
-│   ├── orders.json              # Orders data store
-│   └── id_tracker.json          # Tracks last used IDs for entities
+│ ├── users.json # User data store
+│ ├── products.json # Product data store
+│ ├── orders.json # Orders data store
+│ └── id_tracker.json # Tracks last used IDs for entities
 ├── templates/
-│   ├── login.html               # Login form
-│   ├── register.html            # User registration form
-│   ├── list_products.html       # Product listing for users
-│   ├── product_detail.html      # Individual product details
-│   ├── cart.html                # Shopping cart view
-│   ├── checkout.html            # Checkout page
-│   ├── your_orders.html         # User order history
-│   ├── receipt.html             # Order receipt
-│   ├── edit_user.html           # Customer: edit user form
-│   ├── edit_product.html        # Admin: edit product form
-│   ├── admin_dashboard.html     # Admin dashboard overview
-│   ├── stock_report.html        # Admin: stock report
-│   └── financial_report.html    # Admin: financial report
+│ ├── login.html # Login form
+│ ├── register.html # User registration form
+│ ├── list_products.html # Product listing for users
+│ ├── product_detail.html # Individual product details
+│ ├── cart.html # Shopping cart view
+│ ├── checkout.html # Checkout page
+│ ├── your_orders.html # User order history
+│ ├── receipt.html # Order receipt
+│ ├── edit_user.html # Customer: edit user form
+│ ├── edit_product.html # Admin: edit product form
+│ ├── admin_dashboard.html # Admin dashboard overview
+│ ├── stock_report.html # Admin: stock report
+│ └── financial_report.html # Admin: financial report
 ├── static/
-│   ├── global.css               # Common styles (Customer view)
-│   └── admin_dashboard.css      # Admin dashboard specific styles
-└── README.md                    # Project documentation
-
+│ ├── global.css # Common styles (Customer view)
+│ └── admin_dashboard.css # Admin dashboard specific styles
+└── README.md # Project documentation
 ---
 
 ## References
